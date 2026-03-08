@@ -3,12 +3,13 @@
 
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Happy Women's day Bittu 🐣</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Mali:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
@@ -18,6 +19,8 @@ font-family:"Mali",cursive;
 height:100vh;
 position:relative
 }
+
+/* center message */
 
 .center-message{
 position:absolute;
@@ -31,7 +34,7 @@ font-size:1.6rem;
 color:#c2185b;
 text-align:center;
 box-shadow:0 20px 60px rgba(216,27,96,0.3);
-z-index:1;
+z-index:5;
 max-width:90%;
 animation:pulse 3s ease-in-out infinite
 }
@@ -45,11 +48,12 @@ animation:pulse 3s ease-in-out infinite
 display:block;
 font-size:2rem;
 margin-bottom:15px;
-font-weight:700;
 background:linear-gradient(45deg,#d81b60,#f06292,#d81b60);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent
 }
+
+/* popup */
 
 .overlay{
 position:fixed;
@@ -83,9 +87,10 @@ display:none
 .popup p{
 font-size:1.1rem;
 color:#d81b60;
-line-height:1.6;
-margin-bottom:20px
+line-height:1.6
 }
+
+/* falling letters */
 
 .falling-letter{
 position:absolute;
@@ -102,6 +107,8 @@ animation-duration:8s
 100%{transform:translateY(100vh);opacity:.3}
 }
 
+/* heart explosion */
+
 .heart{
 position:absolute;
 animation:explode 2s ease-out forwards;
@@ -113,6 +120,23 @@ pointer-events:none
 100%{transform:translate(var(--dx),var(--dy));opacity:0}
 }
 
+/* floating love icons */
+
+.love-letter{
+position:fixed;
+font-size:22px;
+pointer-events:none;
+animation:floatLove linear forwards;
+opacity:.8;
+z-index:0
+}
+
+@keyframes floatLove{
+0%{transform:translateY(100vh) scale(.8);opacity:0}
+20%{opacity:1}
+100%{transform:translateY(-10vh) scale(1.2);opacity:0}
+}
+
 .center-gif{
 position:fixed;
 bottom:20px;
@@ -122,21 +146,6 @@ width:150px;
 z-index:10
 }
 
-.qr-wrapper{
-width:100%;
-display:flex;
-justify-content:center;
-position:absolute;
-top:20px;
-left:0;
-z-index:10
-}
-
-.qr-code{
-width:180px;
-height:180px;
-border-radius:12px
-}
 </style>
 </head>
 
@@ -144,14 +153,7 @@ border-radius:12px
 
 <div class="center-message">
 <strong>To The Girl Who Stole My Heart ❤️</strong>
-<span id="centerText">
-Out of everyone in this world,
-my heart somehow found you ❤️
-</span>
-</div>
-
-<div class="qr-wrapper">
-<img src="./assets/qr.png" class="qr-code">
+<span id="centerText"></span>
 </div>
 
 <img src="./assets/mewmew.gif" class="center-gif">
@@ -169,14 +171,38 @@ src="https://www.dropbox.com/scl/fi/z5ldgpoatbjocf6nti7bc/a1.mp3?raw=1"
 preload="auto"></audio>
 
 <script>
+
+/* autoplay music */
+
 document.addEventListener("click",function playAudio(){
 var audio=document.getElementById("player");
 audio.play();
 document.removeEventListener("click",playAudio);
 });
-</script>
 
-<script>
+/* typewriter message */
+
+const typeMessage="Out of everyone in this world,
+my heart somehow found you ❤️️";
+
+let i=0;
+
+function typeWriter(){
+
+if(i<typeMessage.length){
+
+document.getElementById("centerText").innerHTML+=typeMessage.charAt(i);
+i++;
+
+setTimeout(typeWriter,60);
+
+}
+
+}
+
+typeWriter();
+
+/* popup messages */
 
 const messages=[
 
@@ -199,7 +225,38 @@ let currentMessageIndex=0;
 const popup=document.getElementById("popup");
 const overlay=document.getElementById("overlay");
 const popupMessage=document.getElementById("popupMessage");
-const centerText=document.getElementById("centerText");
+
+/* heart explosion */
+
+function createHeartExplosion(x,y){
+
+const hearts=['❤️','💖','💕','💘','💞'];
+
+for(let i=0;i<12;i++){
+
+const heart=document.createElement("div");
+heart.classList.add("heart");
+
+heart.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+
+const angle=(Math.PI*2/12)*i;
+const distance=Math.random()*80+40;
+
+heart.style.left=x+"px";
+heart.style.top=y+"px";
+
+heart.style.setProperty("--dx",Math.cos(angle)*distance+"px");
+heart.style.setProperty("--dy",Math.sin(angle)*distance+"px");
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),2000);
+
+}
+
+}
+
+/* falling letters */
 
 const letterImages=[
 "./assets/letters.png",
@@ -216,84 +273,112 @@ const letterImages=[
 "./assets/m6.png"
 ];
 
-function createHeartExplosion(x,y){
-
-const hearts=['❤️','💖','💕','💘','💞'];
-const numHearts=12;
-
-for(let i=0;i<numHearts;i++){
-
-const heart=document.createElement('div');
-heart.classList.add('heart');
-heart.textContent=hearts[Math.floor(Math.random()*hearts.length)];
-
-const angle=(Math.PI*2/numHearts)*i;
-const distance=Math.random()*80+40;
-
-heart.style.left=x+'px';
-heart.style.top=y+'px';
-heart.style.setProperty('--dx',Math.cos(angle)*distance+'px');
-heart.style.setProperty('--dy',Math.sin(angle)*distance+'px');
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{heart.remove()},2000);
-
-}
-}
-
 function createFallingLetter(){
 
 const letter=document.createElement("img");
-const randomImage=letterImages[Math.floor(Math.random()*letterImages.length)];
 
-letter.src=randomImage;
+letter.src=letterImages[Math.floor(Math.random()*letterImages.length)];
+
 letter.classList.add("falling-letter");
+
 letter.style.left=Math.random()*(window.innerWidth-50)+"px";
 
 letter.addEventListener("click",(e)=>{
+
 createHeartExplosion(e.clientX,e.clientY);
 
-setTimeout(()=>{showPopup()},300);
+setTimeout(()=>showPopup(),300);
 
 });
 
 document.body.appendChild(letter);
 
-setTimeout(()=>{letter.remove()},8000);
+setTimeout(()=>letter.remove(),8000);
 
 }
+
+setInterval(createFallingLetter,1000);
+
+/* popup show */
 
 function showPopup(){
 
 const message=messages[currentMessageIndex];
+
 popupMessage.textContent=message.text;
 
 popup.style.display="block";
 overlay.classList.add("active");
 
-popup.dataset.currentMessage=message.text;
-
 currentMessageIndex=(currentMessageIndex+1)%messages.length;
 
 }
 
-function closePopup(){
+overlay.addEventListener("click",()=>{
 
 popup.style.display="none";
 overlay.classList.remove("active");
 
-if(popup.dataset.currentMessage){
-centerText.innerHTML=popup.dataset.currentMessage;
-}
+});
+
+/* floating love icons */
+
+function createFloatingLove(){
+
+const icons=['💌','❤️','💕','💖','💘'];
+
+const love=document.createElement("div");
+
+love.className="love-letter";
+
+love.innerText=icons[Math.floor(Math.random()*icons.length)];
+
+love.style.left=Math.random()*window.innerWidth+"px";
+
+love.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(love);
+
+setTimeout(()=>love.remove(),9000);
 
 }
 
-overlay.addEventListener("click",closePopup);
+setInterval(createFloatingLove,1500);
 
-setInterval(()=>{
-createFallingLetter();
-},1000);
+/* hidden secret popup */
+let secretClicks = 0;
+
+document.querySelector(".center-message").addEventListener("click", () => {
+
+secretClicks++;
+
+if(secretClicks >= 5){
+
+popupMessage.innerText = "❤️ I LOVE YOU ❤️";
+
+popup.style.display = "block";
+overlay.classList.add("active");
+
+/* FULL SCREEN HEART EXPLOSION */
+
+for(let i = 0; i < 25; i++){
+
+setTimeout(()=>{
+
+const x = Math.random() * window.innerWidth;
+const y = Math.random() * window.innerHeight;
+
+createHeartExplosion(x, y);
+
+}, i * 80);
+
+}
+
+secretClicks = 0;
+
+}
+
+});
 
 </script>
 
