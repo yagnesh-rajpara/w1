@@ -146,6 +146,24 @@ width:150px;
 z-index:10
 }
 
+/* NEW: text rain */
+
+.falling-text{
+position:absolute;
+top:-50px;
+font-size:20px;
+color:#e91e63;
+font-weight:600;
+pointer-events:none;
+animation:fallText linear forwards;
+z-index:1;
+}
+
+@keyframes fallText{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(100vh);opacity:.3;}
+}
+
 </style>
 </head>
 
@@ -202,6 +220,49 @@ setTimeout(typeWriter,60);
 
 typeWriter();
 
+/* NEW: TEXT RAIN WORDS */
+
+const rainWords=[
+
+"❤️","💖","💕","💘","💞","🥰","😍","😘",
+
+"Love","Bittu","Cutuu","Pagal","Baby","Sweetheart","Babe","Beautiful","Gorgeous","Jannuuu","Forever",
+
+"My Love","My Heart","My Sunshine","My Happiness","My World","My Queen","My Everything",
+
+"I love you","I miss you","You are amazing","You make me happy","You stole my heart",
+
+"My Little One 🐣","Thinking of you","Always yours","Forever yours",
+
+"I LOVE YOU BITTU ❤️","My Heart Belongs To You ❤️"
+
+];
+
+/* NEW: TEXT RAIN FUNCTION */
+
+function createFallingText(){
+
+const text=document.createElement("div");
+
+text.className="falling-text";
+
+text.innerText=rainWords[Math.floor(Math.random()*rainWords.length)];
+
+text.style.left=Math.random()*window.innerWidth+"px";
+
+text.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(text);
+
+setTimeout(()=>{text.remove()},8000);
+
+}
+
+/* start text rain */
+
+setInterval(createFallingText,700);
+
+
 /* popup messages */
 
 const messages=[
@@ -225,6 +286,8 @@ let currentMessageIndex=0;
 const popup=document.getElementById("popup");
 const overlay=document.getElementById("overlay");
 const popupMessage=document.getElementById("popupMessage");
+
+const centerText = document.getElementById("centerText");
 
 /* heart explosion */
 
@@ -314,10 +377,14 @@ currentMessageIndex=(currentMessageIndex+1)%messages.length;
 
 }
 
+/* FIX: center text updates again */
+
 overlay.addEventListener("click",()=>{
 
 popup.style.display="none";
 overlay.classList.remove("active");
+
+centerText.innerHTML = popupMessage.textContent;
 
 });
 
@@ -346,6 +413,7 @@ setTimeout(()=>love.remove(),9000);
 setInterval(createFloatingLove,1500);
 
 /* hidden secret popup */
+
 let secretClicks = 0;
 
 document.querySelector(".center-message").addEventListener("click", () => {
@@ -354,12 +422,10 @@ secretClicks++;
 
 if(secretClicks >= 5){
 
-popupMessage.innerText = "❤️ I LOVE YOU SWEETA❤️";
+popupMessage.innerText = "❤️ I LOVE YOU SWEETAA ❤️";
 
 popup.style.display = "block";
 overlay.classList.add("active");
-
-/* FULL SCREEN HEART EXPLOSION */
 
 for(let i = 0; i < 25; i++){
 
@@ -384,5 +450,3 @@ secretClicks = 0;
 
 </body>
 </html>
-
-
