@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Women's day Bittu 🐣</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+user-select:none
+}
+
+body{
+background:linear-gradient(135deg,#fffafa);
+overflow:hidden;
+font-family:"Mali",cursive;
+height:100vh;
+position:relative;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale
+}
+
+/* center message */
+
+.center-message{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(255,240,245,0.9));
+padding:40px 50px;
+border-radius:30px;
+font-size:1.6rem;
+color:#c2185b;
+text-align:center;
+box-shadow:0 20px 60px rgba(216,27,96,0.3);
+z-index:5;
+max-width:90%;
+animation:pulse 3s ease-in-out infinite
+}
+
+@keyframes pulse{
+0%,100%{transform:translate(-50%,-50%) scale(1)}
+50%{transform:translate(-50%,-50%) scale(1.05)}
+}
+
+.center-message strong{
+display:block;
+font-size:2rem;
+margin-bottom:15px;
+background:linear-gradient(45deg,#d81b60,#f06292,#d81b60);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent
+}
+
+/* popup */
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+background:rgba(0,0,0,0.5);
+z-index:99;
+display:none
+}
+
+.overlay.active{display:block}
+
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#fff;
+border-radius:20px;
+box-shadow:0 25px 80px rgba(216,27,96,0.4);
+padding:30px;
+text-align:center;
+z-index:100;
+width:90%;
+max-width:400px;
+display:none
+}
+
+.popup p{
+font-size:1.1rem;
+color:#d81b60;
+line-height:1.6
+}
+
+/* falling letters */
+
+.falling-letter{
+position:absolute;
+top:-100px;
+width:50px;
+animation:fall linear;
+cursor:pointer;
+z-index:2;
+animation-duration:8s
+}
+
+@keyframes fall{
+0%{transform:translateY(0)}
+100%{transform:translateY(100vh);opacity:.3}
+}
+
+/* heart explosion */
+
+.heart{
+position:absolute;
+animation:explode 2s ease-out forwards;
+pointer-events:none
+}
+
+@keyframes explode{
+0%{opacity:1}
+100%{transform:translate(var(--dx),var(--dy));opacity:0}
+}
+
+/* floating love icons */
+
+.love-letter{
+position:fixed;
+font-size:22px;
+pointer-events:none;
+animation:floatLove linear forwards;
+opacity:.8;
+z-index:0
+}
+
+@keyframes floatLove{
+0%{transform:translateY(100vh) scale(.8);opacity:0}
+20%{opacity:1}
+100%{transform:translateY(-10vh) scale(1.2);opacity:0}
+}
+
+.center-gif{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+width:150px;
+z-index:10
+}
+
+/* NEW: text rain */
+
+.falling-text{
+position:absolute;
+top:-50px;
+font-size:20px;
+color:#e91e63;
+font-weight:600;
+pointer-events:none;
+animation:fallText linear forwards;
+z-index:1;
+}
+
+@keyframes fallText{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(100vh);opacity:.3;}
+}
+
+/* Responsive Design */
+
+/* Extra Large Screens (Desktop) */
+@media (min-width: 1920px) {
+    .center-message {
+        padding: 50px 60px;
+        font-size: 1.8rem;
+    }
+    
+    .center-message strong {
+        font-size: 2.5rem;
+    }
+}
+
+/* Large Screens (Desktop) */
+@media (min-width: 1200px) and (max-width: 1919px) {
+    .center-message {
+        padding: 40px 50px;
+        font-size: 1.6rem;
+    }
+}
+
+/* Medium Screens (Tablets in Landscape & Small Laptops) */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .center-message {
+        padding: 30px 40px;
+        font-size: 1.3rem;
+        max-width: 85%;
+    }
+    
+    .center-message strong {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+    }
+    
+    .popup {
+        padding: 25px;
+        max-width: 85%;
+    }
+    
+    .popup p {
+        font-size: 1.05rem;
+    }
+    
+    .center-gif {
+        width: 120px;
+        bottom: 15px;
+    }
+    
+    .falling-letter {
+        width: 40px;
+    }
+    
+    .falling-text {
+        font-size: 18px;
+    }
+}
+
+/* Tablets (Portrait & Landscape) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .center-message {
+        padding: 25px 30px;
+        font-size: 1.1rem;
+        max-width: 92%;
+    }
+    
+    .center-message strong {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    
+    .popup {
+        padding: 22px;
+        max-width: 88%;
+        width:90%;
+    }
+    
+    .popup p {
+        font-size: 0.95rem;
+        line-height:1.5;
+    }
+    
+    .center-gif {
+        width: 100px;
+        bottom: 12px;
+    }
+    
+    .falling-letter {
+        width: 35px;
+    }
+    
+    .falling-text {
+        font-size: 15px;
+    }
+    
+    .love-letter {
+        font-size:18px;
+    }
+}
+
+/* Phones (Small - 320px to 480px) */
+@media (max-width: 480px) {
+    html,body {
+        height:100%;
+        width:100%;
+    }
+    
+    body {
+        position:fixed;
+        height:100vh;
+        width:100vw;
+    }
+    
+    .center-message {
+        padding: 15px 18px;
+        font-size: 0.95rem;
+        max-width: 95%;
+        border-radius:20px;
+    }
+    
+    .center-message strong {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+    
+    .popup {
+        padding: 15px;
+        max-width: 95%;
+        width:90%;
+        border-radius:15px;
+    }
+    
+    .popup p {
+        font-size: 0.85rem;
+        line-height:1.4;
+    }
+    
+    .center-gif {
+        width: 70px;
+        bottom: 8px;
+        border-radius:50%;
+    }
+    
+    .falling-letter {
+        width: 28px;
+    }
+    
+    .falling-text {
+        font-size: 12px;
+    }
+    
+    .love-letter {
+        font-size:16px;
+    }
+}
+
+/* iPhone X and newer (with notch/safe area) */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}
+
+/* Landscape Mode (Mobile) */
+@media (max-height: 500px) {
+    .center-message {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .center-message strong {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+    }
+    
+    .center-gif {
+        width: 60px;
+        bottom: 5px;
+    }
+    
+    .falling-letter {
+        width: 25px;
+    }
+    
+    .falling-text {
+        font-size: 10px;
+    }
+    
+    @keyframes fall {
+        0% { transform: translateY(0) }
+        100% { transform: translateY(100vh); opacity: .3 }
+    }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 2560px) {
+    .center-message {
+        padding: 60px 80px;
+        font-size: 2rem;
+    }
+    
+    .center-message strong {
+        font-size: 3rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="center-message">
+<strong>To The Girl Who Stole My Heart ❤️</strong>
+<span id="centerText"></span>
+</div>
+
+<img src="./assets/mewmew.gif" class="center-gif">
+
+<div class="popup" id="popup">
+<div class="popup-content">
+<p id="popupMessage">Message here</p>
+</div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<audio id="player"
+src="https://www.dropbox.com/scl/fi/z5ldgpoatbjocf6nti7bc/a1.mp3?raw=1"
+preload="auto"></audio>
+
+<script>
+
+/* Mobile Detection */
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isLandscape = window.innerHeight < window.innerWidth;
+
+/* Prevent zoom on double tap (mobile) */
+document.addEventListener('touchmove', function(event) {
+    if (event.touches.length > 1) {
+        event.preventDefault();
+    }
+}, false);
+
+/* Handle Orientation Change */
+window.addEventListener('orientationchange', function() {
+    setTimeout(function() {
+        window.scrollTo(0, 0);
+    }, 100);
+});
+
+/* autoplay music on first interaction */
+let audioPlayed = false;
+
+function playAudio(){
+    if(!audioPlayed){
+        var audio=document.getElementById("player");
+        audio.play().catch(e => console.log("Audio autoplay prevented:", e));
+        audioPlayed = true;
+    }
+}
+
+document.addEventListener("click", playAudio, {once: true});
+document.addEventListener("touchstart", playAudio, {once: true});
+
+/* typewriter message */
+const typeMessage=`Out of everyone in this world,
+my heart somehow found you ❤️️`;
+
+let i=0;
+
+function typeWriter(){
+    if(i<typeMessage.length){
+        document.getElementById("centerText").innerHTML+=typeMessage.charAt(i);
+        i++;
+        setTimeout(typeWriter, isMobile ? 80 : 60);
+    }
+}
+
+typeWriter();
+
+
+
+/* TEXT RAIN */
+
+const rainWords=[
+"❤️","💖","💕","💘","💞","🥰","😍","😘",
+"Love","Bittu","Cutie","Angel","Baby","Sweetheart","Beautiful","Forever",
+"My Love","My Heart","My Sunshine","My Happiness","My World","My Queen","My Everything",
+"I love you","I miss you","You are amazing","You make me happy","You stole my heart",
+"My Little One 🐣","Thinking of you","Always yours","Forever yours",
+"I LOVE YOU BITTU ❤️","Bittu My Love ❤️","My Heart Belongs To You ❤️"
+];
+
+function createFallingText(){
+
+const text=document.createElement("div");
+
+text.className="falling-text";
+
+text.innerText=rainWords[Math.floor(Math.random()*rainWords.length)];
+
+text.style.left=Math.random()*window.innerWidth+"px";
+
+text.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(text);
+
+setTimeout(()=>{text.remove()},8000);
+
+}
+
+setInterval(createFallingText,700);
+/* popup messages */
+const messages=[
+    {text:"You are the reason my days feel brighter and my nights feel warmer ❤️"},
+    {text:"Every moment with you becomes my favorite memory."},
+    {text:"Your smile is my favorite notification."},
+    {text:"No matter how busy life gets, you will always be my priority."},
+    {text:"Wishing you to always stay beautiful, confident, and radiant like flowers."},
+    {text:"No matter what happens in life, I will always choose you."},
+    {text:"I feel lucky to have someone as amazing as you."},
+    {text:"If I had to choose again, I would still choose you."},
+    {text:"I love every little thing about you, my Little One 🫠🐣"},
+    {text:"I hope this little page reminds you how special you are to me ❤️"},
+    {text:"Forever would still not be enough time with you ❤️"},
+    {text: "Thank you for loving me, supporting me, and standing beside me every day."}
+];
+
+let currentMessageIndex=0;
+
+const popup=document.getElementById("popup");
+const overlay=document.getElementById("overlay");
+const popupMessage=document.getElementById("popupMessage");
+const centerText = document.getElementById("centerText");
+
+/* heart explosion with throttling */
+let explosionThrottle = false;
+
+function createHeartExplosion(x,y){
+    if(explosionThrottle) return;
+    explosionThrottle = true;
+    
+    const hearts=['❤️','💖','💕','💘','💞'];
+    const heartCount = isMobile ? 8 : 12;
+    
+    for(let i=0;i<heartCount;i++){
+        const heart=document.createElement("div");
+        heart.classList.add("heart");
+        heart.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+        
+        const angle=(Math.PI*2/heartCount)*i;
+        const distance=Math.random()*80+40;
+        
+        heart.style.left=x+"px";
+        heart.style.top=y+"px";
+        heart.style.setProperty("--dx",Math.cos(angle)*distance+"px");
+        heart.style.setProperty("--dy",Math.sin(angle)*distance+"px");
+        
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),2000);
+    }
+    
+    setTimeout(() => { explosionThrottle = false; }, 300);
+}
+
+/* falling letters - optimized for mobile */
+const letterImages=[
+    "./assets/letters.png",
+    "./assets/q3.png",
+    "./assets/h1.png",
+    "./assets/h3.png",
+    "./assets/t2.png",
+    "./assets/t5.png",
+    "./assets/m1.png",
+    "./assets/m2.png",
+    "./assets/m3.png",
+    "./assets/m4.png",
+    "./assets/m5.png",
+    "./assets/m6.png"
+];
+
+let letterCounter = 0;
+
+function createFallingLetter(){
+    if(++letterCounter > (isMobile ? 6 : 12)) letterCounter = 0;
+    if(isMobile && letterCounter % 2 !== 0) return; // Skip every other letter on mobile
+    
+    const letter=document.createElement("img");
+    letter.src=letterImages[Math.floor(Math.random()*letterImages.length)];
+    letter.classList.add("falling-letter");
+    letter.style.left=Math.random()*(window.innerWidth-50)+"px";
+    
+    const handleInteraction = (e) => {
+        if(e.touches) e.preventDefault();
+        e.stopPropagation();
+        createHeartExplosion(e.touches ? e.touches[0].clientX : e.clientX, 
+                           e.touches ? e.touches[0].clientY : e.clientY);
+        setTimeout(()=>showPopup(), 300);
+        letter.removeEventListener("click", handleInteraction);
+        letter.removeEventListener("touchstart", handleInteraction);
+    };
+    
+    letter.addEventListener("click", handleInteraction);
+    letter.addEventListener("touchstart", handleInteraction, false);
+    
+    document.body.appendChild(letter);
+    setTimeout(()=>letter.remove(), 8000);
+}
+
+const letterInterval = isMobile ? 700 : 500;
+setInterval(createFallingLetter, letterInterval);
+
+/* popup show */
+function showPopup(){
+    const message=messages[currentMessageIndex];
+    popupMessage.textContent=message.text;
+    popup.style.display="block";
+    overlay.classList.add("active");
+    currentMessageIndex=(currentMessageIndex+1)%messages.length;
+}
+
+/* Close popup on tap/click */
+overlay.addEventListener("click", closePopup, false);
+overlay.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    closePopup();
+}, false);
+
+function closePopup(){
+    popup.style.display="none";
+    overlay.classList.remove("active");
+    centerText.innerHTML = popupMessage.textContent;
+}
+
+/* floating love icons - optimized for mobile */
+function createFloatingLove(){
+    const icons=['💌','❤️','💕','💖','💘'];
+    const love=document.createElement("div");
+    love.className="love-letter";
+    love.innerText=icons[Math.floor(Math.random()*icons.length)];
+    love.style.left=Math.random()*window.innerWidth+"px";
+    
+    const duration = isMobile ? (7 + Math.random() * 5) : (5 + Math.random() * 5);
+    love.style.animationDuration=duration+"s";
+    
+    document.body.appendChild(love);
+    setTimeout(()=>love.remove(), duration * 1000);
+}
+
+const loveInterval = isMobile ? 800 : 600;
+setInterval(createFloatingLove, loveInterval);
+
+/* hidden secret popup */
+let secretClicks = 0;
+let lastClickTime = 0;
+
+document.querySelector(".center-message").addEventListener("click", handleSecretClick, false);
+document.querySelector(".center-message").addEventListener("touchstart", handleSecretClick, false);
+
+function handleSecretClick(e) {
+    const now = Date.now();
+    if(now - lastClickTime > 1000) secretClicks = 0;
+    lastClickTime = now;
+    
+    secretClicks++;
+    
+    if(secretClicks >= 5){
+        popupMessage.innerText = "❤️ I LOVE YOU SWEETAA ❤️";
+        popup.style.display = "block";
+        overlay.classList.add("active");
+        
+        const explosionCount = isMobile ? 15 : 25;
+        for(let i = 0; i < explosionCount; i++){
+            setTimeout(()=>{
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                createHeartExplosion(x, y);
+            }, i * 80);
+        }
+        
+        secretClicks = 0;
+    }
+}
+
+// Prevent default touch behaviors
+document.addEventListener('touchstart', function(e) {
+    if(e.target.closest('.center-message, .falling-letter, .popup')) {
+        // Allow interaction
+    }
+}, false);
+
+</script>
+
+</body>
+</html>
